@@ -1,0 +1,49 @@
+package com.example.CRUD.Basic.services;
+
+import java.util.Locale.Category;
+
+import javax.persistence.EntityNotFoundException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.CRUD.Basic.dto.ClientDTO;
+import com.example.CRUD.Basic.entities.Client;
+import com.example.CRUD.Basic.repositories.ClientRepository;
+
+@Service
+public class ClientService {
+	@Autowired
+	private ClientRepository repository;
+
+	@Transactional(readOnly = true)
+	public Page<ClientDTO> findAllPage(PageRequest pageRequest) {
+		Page<Client> list = repository.findAll(pageRequest);
+		return list.map(x -> new ClientDTO(x));
+	}
+
+	@Transactional
+	public ClientDTO insert(ClientDTO dto) {
+		Client entity = new Client();
+		entity = repository.save(entity);
+
+		return new ClientDTO(entity);
+	}
+
+	public void delete(Long id) {
+		try {
+			repository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException("Id not found" + id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DatabaseException("Integrity violation");
+		}
+
+	}
+
+}

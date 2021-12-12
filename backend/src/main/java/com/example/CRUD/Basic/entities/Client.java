@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,6 @@ public class Client implements  Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private String name;
 	private String cpf;
 	private Double income;
@@ -102,6 +102,8 @@ public class Client implements  Serializable {
 		Client other = (Client) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	
 	
 	
 

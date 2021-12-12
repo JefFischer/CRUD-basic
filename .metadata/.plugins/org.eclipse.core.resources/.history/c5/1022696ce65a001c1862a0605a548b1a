@@ -1,0 +1,6 @@
+package com.example.CRUD.Basic.resources;
+
+public class ClientResource {
+
+	private ClientServi
+}

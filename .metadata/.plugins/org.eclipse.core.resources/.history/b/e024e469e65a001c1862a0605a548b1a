@@ -1,0 +1,5 @@
+package com.example.CRUD.Basic.service.exceptions;
+
+public class ResourceNotFoundException {
+
+}
