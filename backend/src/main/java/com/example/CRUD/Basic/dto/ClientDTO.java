@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.time.Instant;
 
 import com.example.CRUD.Basic.entities.Client;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class ClientDTO implements Serializable {
 	private static final long serialVersionUID = 1l;
 
+	@JsonIgnore
 	private Long id;
 	private String name;
 	private String cpf;

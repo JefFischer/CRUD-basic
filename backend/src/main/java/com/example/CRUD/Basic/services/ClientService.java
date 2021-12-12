@@ -1,6 +1,5 @@
 package com.example.CRUD.Basic.services;
 
-
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -25,7 +24,6 @@ public class ClientService {
 	@Autowired
 	private ClientRepository repository;
 
-
 	@Transactional(readOnly = true)
 	public Page<ClientDTO> findAllPaged(PageRequest pageRequest) {
 		Page<Client> list = repository.findAll(pageRequest);
@@ -43,6 +41,7 @@ public class ClientService {
 	@Transactional
 	public ClientDTO insert(ClientDTO dto) {
 		Client entity = new Client();
+		entity =convertionDTOtoClient(dto);
 		entity = repository.save(entity);
 
 		return new ClientDTO(entity);
@@ -52,7 +51,6 @@ public class ClientService {
 	public ClientDTO update(Long id, ClientDTO dto) {
 		try {
 			Client entity = repository.getOne(id);
-			
 
 			entity = repository.save(entity);
 		} catch (EntityNotFoundException e) {
@@ -72,6 +70,16 @@ public class ClientService {
 
 	}
 
-	
+	private Client convertionDTOtoClient(ClientDTO dto) {
+		Client entity = new Client();
+		entity.setBirthDate(dto.getBirthDate());
+		entity.setChildren(dto.getChildren());
+		entity.setCpf(dto.getCpf());
+		entity.setIncome(dto.getIncome());
+		entity.setName(dto.getName());
+		entity.setId(dto.getId());
+		return entity;
 		
 	}
+
+}

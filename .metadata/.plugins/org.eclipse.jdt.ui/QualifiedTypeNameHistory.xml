@@ -6,4 +6,5 @@
     <fullyQualifiedTypeName name="org.springframework.boot.context.properties.bind.Name"/>
     <fullyQualifiedTypeName name="com.example.CRUD.Basic.entities.Client"/>
     <fullyQualifiedTypeName name="java.util.Set"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnore"/>
 </qualifiedTypeNameHistroy>
